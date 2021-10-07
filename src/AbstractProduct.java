@@ -1,5 +1,8 @@
 import static java.lang.System.exit;
 
+/**
+ *  Prototype for our products
+ */
 public abstract class AbstractProduct {
     protected static String secretKey;
     protected int id;

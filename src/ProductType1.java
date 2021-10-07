@@ -1,5 +1,8 @@
 import static java.lang.System.exit;
 
+/**
+ *
+ */
 public class ProductType1 extends AbstractProduct {
 
     public ProductType1(ProductType1 target){
