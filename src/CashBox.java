@@ -5,21 +5,34 @@ public class CashBox {
     private int id;
     private ArrayList<ProductPosition> productPositions;
 
-    public void removeProduct(int id) {
-
-    }
-    public void addProduct(ProductPosition productPosition) {
-
-    }
     public ArrayList<ProductPosition> getProductList() {
         return productPositions;
     }
+
+    public void removeProduct(int id) {
+        productPositions.remove(id); // TODO: Add checks
+    }
+
+    public void addProduct(ProductPosition productPosition) {
+        productPositions.add(productPosition); // TODO: Add checks
+    }
+
     public int calculateQuantityOfProducts() {
-        return 0;
+        int overallQuantity = 0;
+        for (ProductPosition productPosition: productPositions) {
+            overallQuantity += productPosition.getQuantity();
+        }
+        return overallQuantity;
     }
+
     public double calculateOverallSum() {
-        return 0.0;
+        int overallSum = 0;
+        for (ProductPosition productPosition: productPositions) {
+            overallSum += productPosition.calculateSum();
+        }
+        return overallSum;
     }
+
     public boolean checkAvailability() {
         return true;
     }
