@@ -5,15 +5,9 @@ public class CashBox {
     private int id;
     private ArrayList<ProductPosition> productPositions;
 
-<<<<<<< HEAD
-    public void removeProduct(int id) {
-        for (int i = 0; i < productPositions.size(); i++) {
-            
-        }
-=======
+
     public ArrayList<ProductPosition> getProductList() {
         return productPositions;
->>>>>>> 51e48f7f57fd552d018ebc848156773e518554ad
     }
 
     public void removeProduct(int id) {
