@@ -1,5 +1,8 @@
 import static java.lang.System.exit;
 
+/**
+ *
+ */
 public class ProductType1 extends AbstractProduct {
     private static String secretKey;
     private int id;

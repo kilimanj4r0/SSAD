@@ -1,5 +1,8 @@
 import static java.lang.System.exit;
 
+/**
+ *  Prototype for our products
+ */
 public abstract class AbstractProduct {
     public AbstractProduct(AbstractProduct target) {
         if(target == null){
