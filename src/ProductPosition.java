@@ -3,7 +3,7 @@ public class ProductPosition {
     private int quantity;
 
     public double calculateSum() {
-        return 0.0;
+        return product.getProductPrice() * quantity;
     }
 
     public void setQuantity(int quantity) {
