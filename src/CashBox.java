@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
+import static java.lang.System.exit;
+
 public class CashBox {
-    private static String secretKey;
+    private static final String secretKey = "QWE123321";
     private int id;
     private ArrayList<ProductPosition> productPositions;
 
@@ -15,7 +17,14 @@ public class CashBox {
     }
 
     public void addProduct(ProductPosition productPosition) {
-        productPositions.add(productPosition); // TODO: Add checks
+        ArrayList<ProductPosition> tmp_products = new ArrayList<>();
+        tmp_products.add(productPosition);
+        if (!checkAvailability(tmp_products)){
+            System.out.println("Such product is not available");
+            exit(-1);
+        }
+
+        productPositions.add(productPosition);
     }
 
     public int calculateQuantityOfProducts() {
@@ -34,7 +43,18 @@ public class CashBox {
         return overallSum;
     }
 
-    public boolean checkAvailability() {
+    public boolean checkAvailability(ArrayList<ProductPosition> products) {
+        for (ProductPosition product : products) {
+            if (!productPositions.contains(product)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean checkAvailability(ProductPosition product) {
+        if (!productPositions.contains(product)) {
+            return false;
+        }
         return true;
     }
 }
