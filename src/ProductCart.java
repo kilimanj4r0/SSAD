@@ -63,6 +63,7 @@ public class ProductCart {
                         + productPosition.quantity);
                 cashBox.changeQuantity(productPosition.product.id, productPosition.quantity);
             }
+            products.clear();
             System.out.println("Total bill: " + cashBox.calculateOverallSum(products));
         }
         else{

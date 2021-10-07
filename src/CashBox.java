@@ -76,12 +76,13 @@ public class CashBox {
      */
     public boolean checkAvailability(ArrayList<ProductPosition> products) {
         for (ProductPosition product : products) {
-            if (!productPositions.contains(product)) {
-                System.out.println(product.product.name);
-                return false;
+            for (ProductPosition productPosition : productPositions) {
+                if (productPosition.product.id == product.product.id) {
+                    return true;
+                }
             }
         }
-        return true;
+        return false;
     }
 
     /**

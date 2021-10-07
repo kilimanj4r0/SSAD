@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         CashBox cashBox = new CashBox();
-        String[] name_products = new String[]{"qwe", "asd", "ree"};
+        String[] name_products = new String[]{"Pot", "Arrow", "Stockings"};
         double[] prices_products = new double[]{123, 344, 23};
 
         for (int i = 0; i < name_products.length; i++){
@@ -28,10 +28,6 @@ public class Main {
         client.productCart.addProduct(cashBox.getProduct(1, 2));
         client.productCart.addProduct(cashBox.getProduct(1, 14));
 
-        printProductList(client.productCart.getProductList());
-
         client.productCart.createOrder(cashBox);
-
-
     }
 }
