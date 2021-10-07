@@ -1,11 +1,12 @@
 public abstract class AbstractProduct {
-    private String secretKey;
-    private Integer id;
+    private static String secretKey;
+    private int id;
     private String name;
-    private Double price;
+    private double price;
 
-    abstract AbstractProduct makeClone();
-    abstract Pair<String, Double> getProduct();
-    abstract void setName(Pair<String, String> assign);
-    abstract void setPrice(Pair<String, Double> assign);
+    abstract public AbstractProduct makeClone();
+    abstract public String getProductName();
+    abstract public double getProductPrice();
+    abstract public void setName(String key, String name);
+    abstract public void setPrice(String key, double price);
 }

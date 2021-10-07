@@ -1,24 +1,27 @@
-import com.sun.tools.javac.util.Pair;
-
 public class ProductType1 extends AbstractProduct {
 
     @Override
-    AbstractProduct makeClone() {
+    public AbstractProduct makeClone() {
         return null;
     }
 
     @Override
-    Pair<String, Double> getProduct() {
+    public String getProductName() {
         return null;
     }
 
     @Override
-    void setName(Pair<String, String> assign) {
+    public double getProductPrice() {
+        return 0;
+    }
+
+    @Override
+    public void setName(String key, String name) {
 
     }
 
     @Override
-    void setPrice(Pair<String, Double> assign) {
+    public void setPrice(String key, double price) {
 
     }
 }
