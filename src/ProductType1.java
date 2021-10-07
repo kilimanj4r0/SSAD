@@ -1,9 +1,22 @@
+import static java.lang.System.exit;
+
 public class ProductType1 extends AbstractProduct {
     private static String secretKey;
     private int id;
     private String name;
     private double price;
 
+    public ProductType1(ProductType1 target){
+        super(target);
+        if(target != null){
+            this.id = target.id;
+            this.name = target.name;
+            this.price = target.price;
+        }
+        else {
+            exit(0);
+        }
+    }
     @Override
     public AbstractProduct makeClone() {
         return null;
@@ -11,12 +24,12 @@ public class ProductType1 extends AbstractProduct {
 
     @Override
     public String getProductName() {
-        return null;
+        return name;
     }
 
     @Override
     public double getProductPrice() {
-        return 0;
+        return price;
     }
 
     @Override
