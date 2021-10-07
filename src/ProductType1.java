@@ -21,11 +21,21 @@ public class ProductType1 extends AbstractProduct {
 
     @Override
     public void setName(String key, String name) {
-
+        if (key.equals(secretKey)){
+            this.name = name;
+        }
+        else {
+            System.out.println("Access denied");
+        }
     }
 
     @Override
     public void setPrice(String key, double price) {
-
+        if(key.equals(secretKey)){
+            this.price = price;
+        }
+        else{
+            System.out.println("Access denied");
+        }
     }
 }
