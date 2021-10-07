@@ -1,3 +1,4 @@
+import javax.annotation.processing.SupportedSourceVersion;
 import java.util.ArrayList;
 import static java.lang.System.exit;
 
@@ -6,7 +7,7 @@ import static java.lang.System.exit;
  * Customer owns it and performs operation with products(addition or removal) through it
  */
 public class ProductCart {
-    private ArrayList<ProductPosition> products;
+    private final ArrayList<ProductPosition> products = new ArrayList<ProductPosition>();
 
     /**
      * @return  Returns ArrayList with all product positions in the cart
@@ -20,7 +21,9 @@ public class ProductCart {
      * @param productPosition   The product position that we put inside the cart
      */
     public void addProduct(ProductPosition productPosition){
-        products.add(productPosition);
+        if (productPosition != null){
+            products.add(productPosition);
+        }
     }
 
     /**
@@ -42,10 +45,28 @@ public class ProductCart {
         }
     }
 
+
     /**
      * Passing the cart to the cashBox (terminal), where it will be manipulated further
      */
-    public void createOrder(){
-
+    public void createOrder(CashBox cashBox){
+        if (cashBox.checkAvailability(products)){
+            System.out.println("Your order:");
+            for (ProductPosition productPosition : products) {
+            if (cashBox.getProduct(productPosition.product.id, productPosition.quantity) == null){
+                productPosition.quantity = cashBox.getProduct(productPosition.product.id, 0).quantity;
+            }
+                System.out.println("Id, Name, Price, Number of product: "
+                        + productPosition.product.id + ", "
+                        + productPosition.product.name + ", "
+                        + productPosition.product.price + ", "
+                        + productPosition.quantity);
+                cashBox.changeQuantity(productPosition.product.id, productPosition.quantity);
+            }
+            System.out.println("Total bill: " + cashBox.calculateOverallSum(products));
+        }
+        else{
+            System.out.println("These products are already unavailable.");
+        }
     }
 }

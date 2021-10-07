@@ -9,8 +9,8 @@ public class ProductType1 extends AbstractProduct {
         super(target);
     }
 
-    public ProductType1(int id, String name, double price) {
-        super(id, name, price);
+    public ProductType1(String name, double price) {
+        super(name, price);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ProductType1 extends AbstractProduct {
             System.out.println("You can not create product. Wrong key.");
             return null;
         }
-        return new ProductType1(id, name, price);
+        return new ProductType1(name, price);
     }
 
 }

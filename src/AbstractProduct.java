@@ -8,9 +8,11 @@ public abstract class AbstractProduct {
     protected int id;
     protected String name;
     protected double price;
+    public static int next_id = 1;
 
-    protected AbstractProduct(int id, String name, double price){
-        this.id = id;
+    protected AbstractProduct(String name, double price){
+        this.id = next_id;
+        next_id++;
         this.name = name;
         this.price = price;
     }

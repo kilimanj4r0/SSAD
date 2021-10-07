@@ -1,9 +1,16 @@
+import jdk.internal.org.objectweb.asm.tree.ClassNode;
+
 /**
  * Represents the family of identical products. Has type of product and amount of products of this type.
  */
 public class ProductPosition {
-    private AbstractProduct product;
-    private int quantity;
+    public AbstractProduct product;
+    public int quantity;
+
+    public ProductPosition(AbstractProduct product, int quantity){
+        this.product = product;
+        this.quantity = quantity;
+    }
 
     /**
      * @return  Total sum of all products of one type
