@@ -1,4 +1,8 @@
 public class ProductType1 extends AbstractProduct {
+    private static String secretKey;
+    private int id;
+    private String name;
+    private double price;
 
     @Override
     public AbstractProduct makeClone() {
