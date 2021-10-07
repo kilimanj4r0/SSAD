@@ -26,8 +26,12 @@ public abstract class AbstractProduct {
     }
 
     abstract public AbstractProduct makeClone();
-    abstract public String getProductName();
-    abstract public double getProductPrice();
+    public String getProductName() {
+        return name;
+    }
+    public double getProductPrice() {
+        return price;
+    }
     abstract public AbstractProduct createProduct(int id, String name, double price, String key);
 
     public void setName(String key, String name) {

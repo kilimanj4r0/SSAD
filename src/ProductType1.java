@@ -19,16 +19,6 @@ public class ProductType1 extends AbstractProduct {
     }
 
     @Override
-    public String getProductName() {
-        return name;
-    }
-
-    @Override
-    public double getProductPrice() {
-        return price;
-    }
-
-    @Override
     public AbstractProduct createProduct(int id, String name, double price, String key){
         if (secretKey.equals(key)){
             System.out.println("You can not create product. Wrong key.");
