@@ -19,7 +19,7 @@ public class ProductType1 extends AbstractProduct {
     }
     @Override
     public AbstractProduct makeClone() {
-        return null;
+        return new ProductType1(this);
     }
 
     @Override
