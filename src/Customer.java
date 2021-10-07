@@ -5,4 +5,8 @@
 public class Customer {
     public String name;
     public ProductCart productCart;
+
+    public Customer(ProductCart cart) {
+        this.productCart = cart;
+    }
 }

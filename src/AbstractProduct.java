@@ -1,11 +1,42 @@
 import static java.lang.System.exit;
 
-/** The prototype for our products. */
+/**
+ * Prototype for our products
+ */
 public abstract class AbstractProduct {
+    public static int nextId = 1;
     protected static String secretKey;
     protected int id;
     protected String name;
     protected double price;
+
+    /**
+     * Copy constructor
+     *
+     * @param target The object of type AbstractProduct that will be copied to the new one
+     */
+    public AbstractProduct(AbstractProduct target) {
+        if (target == null) {
+            System.out.println("Null product occurred");
+            exit(-1);
+        }
+        this.price = target.price;
+        this.id = target.id;
+        this.name = target.name;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param name  name of the product
+     * @param price price of the product
+     */
+    protected AbstractProduct(String name, double price) {
+        this.id = nextId;
+        nextId++;
+        this.name = name;
+        this.price = price;
+    }
 
     /**
      * Clones the object
@@ -23,33 +54,6 @@ public abstract class AbstractProduct {
      * @return product in case of succeed, null otherwise
      */
     abstract public AbstractProduct createProduct(int id, String name, double price, String key);
-
-    /**
-     * Constructor
-     *
-     * @param name  name of the product
-     * @param price price of the product
-     */
-    protected AbstractProduct(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-    /**
-     * Copy constructor
-     *
-     * @param target The object of type AbstractProduct that will be copied to the new one
-     */
-    public AbstractProduct(AbstractProduct target) {
-        if (target == null) {
-            System.out.println("Null product occurred");
-            exit(-1);
-        }
-        this.price = target.price;
-        this.id = target.id;
-        this.name = target.name;
-    }
 
     public String getProductName() {
         return name;

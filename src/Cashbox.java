@@ -1,48 +1,70 @@
 import java.util.ArrayList;
 
-import static java.lang.System.exit;
-
 /**
  * Class representing Cashier point in our supermarket
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
 public class Cashbox {
-    private static final String SECRET_KEY = "QWE123321";
+    private static final String secretKey = "QWE123321";
+    private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
     private int id;
-    private ArrayList<ProductPosition> productPositions;
 
-    /** Returns an ArrayList of all products in our supermarket */
+    /**
+     * @return ArrayList of all products in our supermarket
+     */
     public ArrayList<ProductPosition> getProductList() {
         return productPositions;
     }
 
-    public void removeProduct(int id) {
-        productPositions.remove(id); // TODO: Add checks
+    public void changeQuantity(int id, int minusQuantity) {
+        for (ProductPosition productPosition : productPositions) {
+            if (productPosition.product.id == id) {
+                productPosition.quantity -= minusQuantity;
+            }
+        }
     }
 
+    public ProductPosition getProduct(int id, int number) {
+        for (ProductPosition productPosition : productPositions) {
+            if (productPosition.product.id == id) {
+                if (productPosition.quantity < number) {
+                    System.out.println("Too many objects.");
+                    return null;
+                }
+                return new ProductPosition(productPosition.product.makeClone(), number);
+            }
+        }
+        System.out.println("There is no such product");
+        return null;
+    }
+
+    /**
+     * Removes the product from the order
+     *
+     * @param index
+     */
+    public void removeProduct(int index) {
+        productPositions.remove(index);
+    }
+
+    /**
+     * Adds product to the order of the customer
+     *
+     * @param productPosition
+     */
     public void addProduct(ProductPosition productPosition) {
-        ArrayList<ProductPosition> tempProducts = new ArrayList<>();
-        tempProducts.add(productPosition);
-        if (!checkAvailability(tempProducts)) {
-            System.out.println("Such product is not available");
-            exit(-1);
+        if (checkAvailability(productPosition)) {
+            productPositions.get(productPositions.indexOf(productPosition)).quantity += 1;
         }
         productPositions.add(productPosition);
     }
 
-    /** Returns the number of products in the order (bill) */
-    public int calculateQuantityOfProducts() {
-        int overallQuantity = 0;
-        for (ProductPosition productPosition : productPositions) {
-            overallQuantity += productPosition.getQuantity();
-        }
-        return overallQuantity;
-    }
-
-    /** Returns the amount of money customer needs to pay to the Cashier */
-    public double calculateOverallSum() {
+    /**
+     * @return The amount of money customer needs to pay to the Cashier
+     */
+    public double calculateOverallSum(ArrayList<ProductPosition> products) {
         int overallSum = 0;
-        for (ProductPosition productPosition : productPositions) {
+        for (ProductPosition productPosition : products) {
             overallSum += productPosition.calculateSum();
         }
         return overallSum;
@@ -56,11 +78,13 @@ public class Cashbox {
      */
     public boolean checkAvailability(ArrayList<ProductPosition> products) {
         for (ProductPosition product : products) {
-            if (!productPositions.contains(product)) {
-                return false;
+            for (ProductPosition productPosition : productPositions) {
+                if (productPosition.product.id == product.product.id) {
+                    return true;
+                }
             }
         }
-        return true;
+        return false;
     }
 
     /**

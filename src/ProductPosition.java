@@ -1,14 +1,25 @@
-/** Represents the family of identical products. Has type of product and amount of products of this type. */
+/**
+ * Represents the family of identical products. Has type of product and amount of products of this type.
+ */
 public class ProductPosition {
-    private AbstractProduct product;
-    private int quantity;
+    public AbstractProduct product;
+    public int quantity;
 
-    /** Returns the total sum of all products of one type */
+    public ProductPosition(AbstractProduct product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return Total sum of all products of one type
+     */
     public double calculateSum() {
         return product.getProductPrice() * quantity;
     }
 
-    /** Returns the quantity of products of certain type */
+    /**
+     * @return Quantity of products of certain type
+     */
     public int getQuantity() {
         return quantity;
     }

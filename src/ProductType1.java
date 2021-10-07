@@ -1,21 +1,14 @@
+/**
+ * Represents the certain type of product.
+ */
 public class ProductType1 extends AbstractProduct {
-    /**
-     * Copy constructor
-     *
-     * @param target The product that will be copied
-     */
+
     public ProductType1(ProductType1 target) {
         super(target);
     }
 
-    /**
-     * Constructor
-     *
-     * @param name  name of the product
-     * @param price price of the product
-     */
-    public ProductType1(int id, String name, double price) {
-        super(id, name, price);
+    public ProductType1(String name, double price) {
+        super(name, price);
     }
 
     /**
@@ -40,6 +33,7 @@ public class ProductType1 extends AbstractProduct {
             System.out.println("You can not create product. Wrong key.");
             return null;
         }
-        return new ProductType1(id, name, price);
+        return new ProductType1(name, price);
     }
+
 }
