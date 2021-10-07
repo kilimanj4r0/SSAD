@@ -9,12 +9,21 @@ public abstract class AbstractProduct {
     protected String name;
     protected double price;
 
+    /**
+     * Constructor
+     * @param name  name of the product
+     * @param price price of the product
+     */
     protected AbstractProduct(int id, String name, double price){
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
+    /**
+     * Copy constructor
+     * @param target    The object of type AbstractProduct that will be copied to the new one
+     */
     public AbstractProduct(AbstractProduct target) {
         if(target == null){
             System.out.println("Null product occurred");
