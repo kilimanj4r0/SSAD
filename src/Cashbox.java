@@ -1,31 +1,30 @@
 import java.util.ArrayList;
-import static java.lang.System.exit;
 
 /**
  * Class representing Cashier point in our supermarket
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
-public class CashBox {
-    private static final String secretKey = "QWE123321";
-    private int id;
+public class Cashbox {
+    private static final String SECRET_KEY = "QWE123321";
     private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
+    private int id;
 
     /**
-     * @return  ArrayList of all products in our supermarket
+     * @return ArrayList of all products in our supermarket
      */
     public ArrayList<ProductPosition> getProductList() {
         return productPositions;
     }
 
-    public void changeQuantity(int id, int minus_quantity){
+    public void changeQuantity(int id, int minusQuantity) {
         for (ProductPosition productPosition : productPositions) {
             if (productPosition.product.id == id) {
-                productPosition.quantity -= minus_quantity;
+                productPosition.quantity -= minusQuantity;
             }
         }
     }
 
-    public ProductPosition getProduct(int id, int number){
+    public ProductPosition getProduct(int id, int number) {
         for (ProductPosition productPosition : productPositions) {
             if (productPosition.product.id == id) {
                 if (productPosition.quantity < number) {
@@ -41,29 +40,31 @@ public class CashBox {
 
     /**
      * Removes the product from the order
-     * @param id
+     *
+     * @param index
      */
-    public void removeProduct(int id) {
-        productPositions.remove(id); // TODO: Add checks
+    public void removeProduct(int index) {
+        productPositions.remove(index);
     }
 
     /**
      * Adds product to the order of the customer
+     *
      * @param productPosition
      */
     public void addProduct(ProductPosition productPosition) {
-        if (checkAvailability(productPosition)){
+        if (checkAvailability(productPosition)) {
             productPositions.get(productPositions.indexOf(productPosition)).quantity += 1;
         }
         productPositions.add(productPosition);
     }
 
     /**
-     * @return  The amount of money customer needs to pay to the Cashier
+     * @return The amount of money customer needs to pay to the Cashier
      */
     public double calculateOverallSum(ArrayList<ProductPosition> products) {
         int overallSum = 0;
-        for (ProductPosition productPosition: products) {
+        for (ProductPosition productPosition : products) {
             overallSum += productPosition.calculateSum();
         }
         return overallSum;
@@ -71,8 +72,9 @@ public class CashBox {
 
     /**
      * Checks if there are such products in the supermarket
-     * @param products  positions to check for availability to sell
-     * @return          true if we are able to sell such products, false otherwise
+     *
+     * @param products positions to check for availability to sell
+     * @return true if we are able to sell such products, false otherwise
      */
     public boolean checkAvailability(ArrayList<ProductPosition> products) {
         for (ProductPosition product : products) {
@@ -87,8 +89,9 @@ public class CashBox {
 
     /**
      * Checks if there are such product in the supermarket
-     * @param product   position to check for availability to sell
-     * @return          true if we are able to sell this product, false otherwise
+     *
+     * @param product position to check for availability to sell
+     * @return true if we are able to sell this product, false otherwise
      */
     public boolean checkAvailability(ProductPosition product) {
         return productPositions.contains(product);

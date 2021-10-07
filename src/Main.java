@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        CashBox cashBox = new CashBox();
+        Cashbox cashBox = new Cashbox();
         String[] name_products = new String[]{"Pot", "Arrow", "Stockings"};
         double[] prices_products = new double[]{123, 344, 23};
 

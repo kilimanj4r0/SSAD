@@ -1,4 +1,3 @@
-import javax.annotation.processing.SupportedSourceVersion;
 import java.util.ArrayList;
 import static java.lang.System.exit;
 
@@ -49,7 +48,7 @@ public class ProductCart {
     /**
      * Passing the cart to the cashBox (terminal), where it will be manipulated further
      */
-    public void createOrder(CashBox cashBox){
+    public void createOrder(Cashbox cashBox){
         if (cashBox.checkAvailability(products)){
             System.out.println("Your order:");
             for (ProductPosition productPosition : products) {
