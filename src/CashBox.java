@@ -52,9 +52,6 @@ public class CashBox {
         return true;
     }
     public boolean checkAvailability(ProductPosition product) {
-        if (!productPositions.contains(product)) {
-            return false;
-        }
-        return true;
+        return productPositions.contains(product);
     }
 }
