@@ -6,7 +6,9 @@ public class CashBox {
     private ArrayList<ProductPosition> productPositions;
 
     public void removeProduct(int id) {
-
+        for (int i = 0; i < productPositions.size(); i++) {
+            
+        }
     }
     public void addProduct(ProductPosition productPosition) {
 
