@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
 public class Cashbox {
-    private static final String SECRET_KEY = "QWE123321";
+    private static final String secretKey = "QWE123321";
     private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
     private int id;
 
