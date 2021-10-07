@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 import static java.lang.System.exit;
 
 /**
@@ -22,7 +23,7 @@ public class Cashbox {
     public void addProduct(ProductPosition productPosition) {
         ArrayList<ProductPosition> tmp_products = new ArrayList<>();
         tmp_products.add(productPosition);
-        if (!checkAvailability(tmp_products)){
+        if (!checkAvailability(tmp_products)) {
             System.out.println("Such product is not available");
             exit(-1);
         }
@@ -32,7 +33,7 @@ public class Cashbox {
     /** Returns the number of products in the order (bill) */
     public int calculateQuantityOfProducts() {
         int overallQuantity = 0;
-        for (ProductPosition productPosition: productPositions) {
+        for (ProductPosition productPosition : productPositions) {
             overallQuantity += productPosition.getQuantity();
         }
         return overallQuantity;
@@ -41,7 +42,7 @@ public class Cashbox {
     /** Returns the amount of money customer needs to pay to the Cashier */
     public double calculateOverallSum() {
         int overallSum = 0;
-        for (ProductPosition productPosition: productPositions) {
+        for (ProductPosition productPosition : productPositions) {
             overallSum += productPosition.calculateSum();
         }
         return overallSum;
@@ -49,8 +50,9 @@ public class Cashbox {
 
     /**
      * Checks if there are such products in the supermarket
-     * @param products  positions to check for availability to sell
-     * @return          true if we are able to sell such products, false otherwise
+     *
+     * @param products positions to check for availability to sell
+     * @return true if we are able to sell such products, false otherwise
      */
     public boolean checkAvailability(ArrayList<ProductPosition> products) {
         for (ProductPosition product : products) {
@@ -63,8 +65,9 @@ public class Cashbox {
 
     /**
      * Checks if there are such product in the supermarket
-     * @param product   position to check for availability to sell
-     * @return          true if we are able to sell this product, false otherwise
+     *
+     * @param product position to check for availability to sell
+     * @return true if we are able to sell this product, false otherwise
      */
     public boolean checkAvailability(ProductPosition product) {
         return productPositions.contains(product);
