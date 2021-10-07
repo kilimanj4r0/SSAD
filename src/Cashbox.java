@@ -21,9 +21,9 @@ public class Cashbox {
     }
 
     public void addProduct(ProductPosition productPosition) {
-        ArrayList<ProductPosition> tmp_products = new ArrayList<>();
-        tmp_products.add(productPosition);
-        if (!checkAvailability(tmp_products)) {
+        ArrayList<ProductPosition> tempProducts = new ArrayList<>();
+        tempProducts.add(productPosition);
+        if (!checkAvailability(tempProducts)) {
             System.out.println("Such product is not available");
             exit(-1);
         }

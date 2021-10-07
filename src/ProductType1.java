@@ -1,4 +1,3 @@
-/** Represents the certain type of product. */
 public class ProductType1 extends AbstractProduct {
     /**
      * Copy constructor
