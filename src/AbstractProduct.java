@@ -1,13 +1,14 @@
 import static java.lang.System.exit;
 
-/**
- *  Prototype for our products
- */
+/** The prototype for our products. */
 public abstract class AbstractProduct {
     protected static String secretKey;
     protected int id;
     protected String name;
     protected double price;
+
+    abstract public AbstractProduct makeClone();
+    abstract public AbstractProduct createProduct(int id, String name, double price, String key);
 
     /**
      * Constructor
@@ -22,7 +23,7 @@ public abstract class AbstractProduct {
 
     /**
      * Copy constructor
-     * @param target    The object of type AbstractProduct that will be copied to the new one
+     * @param target The object of type AbstractProduct that will be copied to the new one
      */
     public AbstractProduct(AbstractProduct target) {
         if(target == null){
@@ -34,14 +35,13 @@ public abstract class AbstractProduct {
         this.name = target.name;
     }
 
-    abstract public AbstractProduct makeClone();
     public String getProductName() {
         return name;
     }
+
     public double getProductPrice() {
         return price;
     }
-    abstract public AbstractProduct createProduct(int id, String name, double price, String key);
 
     public void setName(String key, String name) {
         if (key.equals(secretKey)){
@@ -51,7 +51,6 @@ public abstract class AbstractProduct {
             System.out.println("Access denied");
         }
     }
-
 
     public void setPrice(String key, double price) {
         if(key.equals(secretKey)){
