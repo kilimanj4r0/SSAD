@@ -1,17 +1,14 @@
 package shopelements;
 
-import shopelements.ProductPosition;
-
 import java.util.ArrayList;
 
 /**
  * Class representing Cashier point in our supermarket
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
-public class Cashbox {
-    private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
-    private int id;
+public class CashRegister {
     private static final String secretKey = "QWE123321";
+    private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
 
     /**
      * @return ArrayList of all products in our supermarket
@@ -62,7 +59,7 @@ public class Cashbox {
         else productPositions.add(productPosition);
     }
 
-    public void addProduct(String name, double price, int quantity){
+    public void addProduct(String name, double price, int quantity) {
         Product product = Product.createProduct(name, price, secretKey);
         this.productPositions.add(new ProductPosition(product, quantity));
     }
@@ -100,7 +97,7 @@ public class Cashbox {
      * @return true if we are able to sell this for_search, false otherwise
      */
     public boolean checkAvailability(ProductPosition for_search) {
-        for (ProductPosition pos: productPositions) {
+        for (ProductPosition pos : productPositions) {
             if (pos.product.id == for_search.product.id && pos.quantity >= for_search.quantity) {
                 return true;
             }

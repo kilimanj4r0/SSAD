@@ -1,16 +1,16 @@
 package customer;
 
-import shopelements.ProductCart;
+import shopelements.ShoppingCart;
 
 /**
- * Class representing the customer of the supermarket. We fill cart by calling productCart's methods via particular
+ * Class representing the customer of the supermarket. We fill cart by calling shoppingCart's methods via particular
  * customer (one customer - one cart)
  */
 public class Customer {
     public String name;
-    public ProductCart productCart;
+    public ShoppingCart shoppingCart;
 
-    public Customer(ProductCart cart) {
-        this.productCart = cart;
+    public Customer(ShoppingCart cart) {
+        this.shoppingCart = cart;
     }
 }

@@ -16,7 +16,7 @@ public class ProductPosition {
      * @return Total sum of all products of one type
      */
     public double calculateSum() {
-        return product.getProductPrice() * quantity;
+        return product.getPrice() * quantity;
     }
 
     /**

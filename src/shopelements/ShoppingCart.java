@@ -3,13 +3,12 @@ package shopelements;
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
-import static java.lang.System.in;
 
 /**
  * Class representing the pac.Product Cart in supermarket.
  * pac.Customer owns it and performs operation with products(addition or removal) through it
  */
-public class ProductCart {
+public class ShoppingCart {
     private final ArrayList<ProductPosition> products = new ArrayList<ProductPosition>();
 
     /**
@@ -52,23 +51,23 @@ public class ProductCart {
 
 
     /**
-     * Passing the cart to the cashbox (terminal), where it will be manipulated further
+     * Passing the cart to the cashRegister (terminal), where it will be manipulated further
      */
-    public void createOrder(Cashbox cashbox) {
-        if (cashbox.checkAvailability(products)) {
+    public void createOrder(CashRegister cashRegister) {
+        if (cashRegister.checkAvailability(products)) {
             System.out.println("Your order:");
             for (ProductPosition productPosition : products) {
-                if (cashbox.getProduct(productPosition.product.id, productPosition.quantity) == null) {
-                    productPosition.quantity = cashbox.getProduct(productPosition.product.id, 0).quantity;
+                if (cashRegister.getProduct(productPosition.product.id, productPosition.quantity) == null) {
+                    productPosition.quantity = cashRegister.getProduct(productPosition.product.id, 0).quantity;
                 }
                 System.out.println("Id, Name, Price, Number of product: "
                         + productPosition.product.id + ", "
                         + productPosition.product.name + ", "
-                        + productPosition.product.price + ", "
+                        + productPosition.product.getPrice() + ", "
                         + productPosition.quantity);
-                cashbox.changeQuantity(productPosition.product.id, productPosition.quantity);
+                cashRegister.changeQuantity(productPosition.product.id, productPosition.quantity);
             }
-            System.out.println("Total bill: " + cashbox.calculateOverallSum(products));
+            System.out.println("Total bill: " + cashRegister.calculateOverallSum(products));
             products.clear();
         } else {
             System.out.println("Some of these products are already unavailable.");

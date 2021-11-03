@@ -6,18 +6,18 @@ import static java.lang.System.exit;
  * Prototype for our products
  */
 public class Product {
+    private static final String secretKey = "QWE123321";
     public static int nextId = 1;
     protected int id;
-    private static final String secretKey = "QWE123321";
     protected String name;
-    protected double price;
+    private double price;
 
     /**
      * Copy constructor
      *
      * @param target The object of type AbstractProduct that will be copied to the new one
      */
-    private Product(Product target) {
+    protected Product(Product target) {
         if (target == null) {
             System.out.println("Null product occurred");
             exit(-1);
@@ -41,15 +41,6 @@ public class Product {
     }
 
     /**
-     * Clones the object
-     *
-     * @return clone of the AbstractProduct
-     */
-    public Product makeClone() {
-        return new Product(this);
-    }
-
-    /**
      * Function for creating the product via checking the key
      *
      * @param name  name of the product
@@ -65,12 +56,17 @@ public class Product {
         return new Product(name, price);
     }
 
-    public String getProductName() {
-        return name;
+    /**
+     * Clones the object
+     *
+     * @return clone of the AbstractProduct
+     */
+    public Product makeClone() {
+        return new Product(this);
     }
 
-    public double getProductPrice() {
-        return price;
+    public String getProductName() {
+        return name;
     }
 
     /**
@@ -101,11 +97,11 @@ public class Product {
         }
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
 
