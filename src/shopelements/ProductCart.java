@@ -3,6 +3,7 @@ package shopelements;
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 /**
  * Class representing the pac.Product Cart in supermarket.
@@ -25,7 +26,9 @@ public class ProductCart {
      */
     public void addProduct(ProductPosition productPosition) {
         if (productPosition != null) {
-            products.add(productPosition);
+            int index = indexInCart(productPosition);
+            if (index != -1) products.get(index).quantity += productPosition.quantity;
+            else products.add(productPosition);
         }
     }
 
@@ -68,7 +71,22 @@ public class ProductCart {
             System.out.println("Total bill: " + cashbox.calculateOverallSum(products));
             products.clear();
         } else {
-            System.out.println("These products are already unavailable.");
+            System.out.println("Some of these products are already unavailable.");
         }
+    }
+
+    /**
+     * Checks if there are such for_search in the supermarket
+     *
+     * @param for_search position to check for availability to sell
+     * @return true if we are able to sell this for_search, false otherwise
+     */
+    public int indexInCart(ProductPosition for_search) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).product == for_search.product) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

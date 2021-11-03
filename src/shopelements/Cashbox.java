@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
 public class Cashbox {
-    private static final String secretKey = "QWE123321";
     private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
     private int id;
+    private static final String secretKey = "QWE123321";
 
     /**
      * @return ArrayList of all products in our supermarket
@@ -57,10 +57,13 @@ public class Cashbox {
      * @param productPosition
      */
     public void addProduct(ProductPosition productPosition) {
-        if (checkAvailability(productPosition)) {
-            productPositions.get(productPositions.indexOf(productPosition)).quantity += 1;
-        }
-        productPositions.add(productPosition);
+        int index = indexInCart(productPosition);
+        if (index != -1) productPositions.get(index).quantity += 1;
+        else productPositions.add(productPosition);
+    }
+
+    public void addProduct(String name, double price, int quantity){
+        Product product = new Product(name, price, )
     }
 
     /**
@@ -82,22 +85,40 @@ public class Cashbox {
      */
     public boolean checkAvailability(ArrayList<ProductPosition> products) {
         for (ProductPosition product : products) {
-            for (ProductPosition productPosition : productPositions) {
-                if (productPosition.product.id == product.product.id) {
-                    return true;
-                }
+            if (!checkAvailability(product)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if there are such for_search in the supermarket
+     *
+     * @param for_search position to check for availability to sell
+     * @return true if we are able to sell this for_search, false otherwise
+     */
+    public boolean checkAvailability(ProductPosition for_search) {
+        for (ProductPosition pos: productPositions) {
+            if (pos.product == for_search.product && pos.quantity >= for_search.quantity) {
+                return true;
             }
         }
         return false;
     }
 
     /**
-     * Checks if there are such product in the supermarket
+     * Checks if there are such for_search in the supermarket
      *
-     * @param product position to check for availability to sell
-     * @return true if we are able to sell this product, false otherwise
+     * @param for_search position to check for availability to sell
+     * @return true if we are able to sell this for_search, false otherwise
      */
-    public boolean checkAvailability(ProductPosition product) {
-        return productPositions.contains(product);
+    public int indexInCart(ProductPosition for_search) {
+        for (int i = 0; i < productPositions.size(); i++) {
+            if (productPositions.get(i).product == for_search.product) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

@@ -7,9 +7,8 @@ import static java.lang.System.exit;
  */
 public class Product {
     public static int nextId = 1;
-    private static Cashbox cashbox;
-    protected static String secretKey;
     protected int id;
+    private static final String secretKey = "QWE123321";
     protected String name;
     protected double price;
 

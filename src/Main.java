@@ -22,8 +22,8 @@ public class Main {
 
 
         for (int i = 0; i < nameProducts.length; i++) {
-            Product a = Product.createProduct(nameProducts[i], pricesProducts[i], "");
-            cashbox.addProduct(new ProductPosition(a, 1));
+            Product a = Product.createProduct();
+            cashbox.addProduct(nameProducts[i], pricesProducts[i], 1));
         }
 
         Customer client = new Customer(new ProductCart());

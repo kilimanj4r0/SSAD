@@ -8,12 +8,7 @@ public class RottenSale extends SaleDecorator {
     }
 
     @Override
-    public Product makeClone() {
-        return null;
-    }
-
-    @Override
-    public Product createProduct(int id, String name, double price, String key) {
-        return null;
+    public double getPrice() {
+        return super.getPrice() * 0.5;
     }
 }
