@@ -22,8 +22,7 @@ public class Main {
 
 
         for (int i = 0; i < nameProducts.length; i++) {
-            Product a = Product.createProduct();
-            cashbox.addProduct(nameProducts[i], pricesProducts[i], 1));
+            cashbox.addProduct(nameProducts[i], pricesProducts[i], 1);
         }
 
         Customer client = new Customer(new ProductCart());
@@ -31,7 +30,7 @@ public class Main {
 
         printProductList(cashbox.getProductList());
 
-        client.productCart.addProduct(cashbox.getProduct(1, 2));
+        client.productCart.addProduct(cashbox.getProduct(1, 1));
         client.productCart.addProduct(cashbox.getProduct(1, 14));
 
         client.productCart.createOrder(cashbox);

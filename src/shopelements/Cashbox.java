@@ -63,7 +63,8 @@ public class Cashbox {
     }
 
     public void addProduct(String name, double price, int quantity){
-        Product product = new Product(name, price, )
+        Product product = Product.createProduct(name, price, secretKey);
+        this.productPositions.add(new ProductPosition(product, quantity));
     }
 
     /**
@@ -100,7 +101,7 @@ public class Cashbox {
      */
     public boolean checkAvailability(ProductPosition for_search) {
         for (ProductPosition pos: productPositions) {
-            if (pos.product == for_search.product && pos.quantity >= for_search.quantity) {
+            if (pos.product.id == for_search.product.id && pos.quantity >= for_search.quantity) {
                 return true;
             }
         }

@@ -17,7 +17,7 @@ public class Product {
      *
      * @param target The object of type AbstractProduct that will be copied to the new one
      */
-    public Product(Product target) {
+    private Product(Product target) {
         if (target == null) {
             System.out.println("Null product occurred");
             exit(-1);
@@ -33,7 +33,7 @@ public class Product {
      * @param name  name of the product
      * @param price price of the product
      */
-    protected Product(String name, double price) {
+    private Product(String name, double price) {
         this.id = nextId;
         nextId++;
         this.name = name;
@@ -58,7 +58,7 @@ public class Product {
      * @return product in case of succeed, null otherwise
      */
     public static Product createProduct(String name, double price, String key) {
-        if (secretKey.equals(key)) {
+        if (!secretKey.equals(key)) {
             System.out.println("You can not create product. Wrong key.");
             return null;
         }
