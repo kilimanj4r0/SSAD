@@ -1,11 +1,13 @@
+package shopelements;
+
 /**
  * Represents the family of identical products. Has type of product and amount of products of this type.
  */
 public class ProductPosition {
-    public AbstractProduct product;
+    public Product product;
     public int quantity;
 
-    public ProductPosition(AbstractProduct product, int quantity) {
+    public ProductPosition(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }

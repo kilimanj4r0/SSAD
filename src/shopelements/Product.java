@@ -1,10 +1,13 @@
+package shopelements;
+
 import static java.lang.System.exit;
 
 /**
  * Prototype for our products
  */
-public abstract class AbstractProduct {
+public class Product {
     public static int nextId = 1;
+    private static Cashbox cashbox;
     protected static String secretKey;
     protected int id;
     protected String name;
@@ -15,7 +18,7 @@ public abstract class AbstractProduct {
      *
      * @param target The object of type AbstractProduct that will be copied to the new one
      */
-    public AbstractProduct(AbstractProduct target) {
+    public Product(Product target) {
         if (target == null) {
             System.out.println("Null product occurred");
             exit(-1);
@@ -31,7 +34,7 @@ public abstract class AbstractProduct {
      * @param name  name of the product
      * @param price price of the product
      */
-    protected AbstractProduct(String name, double price) {
+    protected Product(String name, double price) {
         this.id = nextId;
         nextId++;
         this.name = name;
@@ -43,7 +46,9 @@ public abstract class AbstractProduct {
      *
      * @return clone of the AbstractProduct
      */
-    abstract public AbstractProduct makeClone();
+    public Product makeClone() {
+        return new Product(this);
+    }
 
     /**
      * Function for creating the product via checking the key
@@ -53,7 +58,13 @@ public abstract class AbstractProduct {
      * @param key   key to get/not get access to the creation of the product
      * @return product in case of succeed, null otherwise
      */
-    abstract public AbstractProduct createProduct(int id, String name, double price, String key);
+    public static Product createProduct(String name, double price, String key) {
+        if (secretKey.equals(key)) {
+            System.out.println("You can not create product. Wrong key.");
+            return null;
+        }
+        return new Product(name, price);
+    }
 
     public String getProductName() {
         return name;
@@ -90,4 +101,13 @@ public abstract class AbstractProduct {
             System.out.println("Access denied");
         }
     }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public double getPrice(){
+        return this.price;
+    }
+
 }

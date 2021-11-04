@@ -1,10 +1,12 @@
+package shopelements;
+
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
 /**
- * Class representing the Product Cart in supermarket.
- * Customer owns it and performs operation with products(addition or removal) through it
+ * Class representing the pac.Product Cart in supermarket.
+ * pac.Customer owns it and performs operation with products(addition or removal) through it
  */
 public class ProductCart {
     private final ArrayList<ProductPosition> products = new ArrayList<ProductPosition>();
@@ -17,7 +19,7 @@ public class ProductCart {
     }
 
     /**
-     * Adds the product type in the cart in the cart, the number of products is hold inside the class ProductPosition
+     * Adds the product type in the cart in the cart, the number of products is hold inside the class pac.ProductPosition
      *
      * @param productPosition The product position that we put inside the cart
      */

@@ -1,3 +1,7 @@
+package shopelements;
+
+import shopelements.ProductPosition;
+
 import java.util.ArrayList;
 
 /**

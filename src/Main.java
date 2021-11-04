@@ -1,12 +1,16 @@
+import shopelements.Cashbox;
+import customer.Customer;
+import shopelements.*;
+
 import java.util.ArrayList;
 
 public class Main {
     public static void printProductList(ArrayList<ProductPosition> array) {
         for (ProductPosition productPosition : array) {
-            System.out.println("Id, Name, Price, Number of product: "
-                    + productPosition.product.id + ", "
-                    + productPosition.product.name + ", "
-                    + productPosition.product.price + ", "
+            System.out.println("Id, Name, Price, Quantity: "
+                    + productPosition.product.getId() + ", "
+                    + productPosition.product.getProductName() + ", "
+                    + productPosition.product.getProductPrice() + ", "
                     + productPosition.quantity);
         }
     }
@@ -16,8 +20,10 @@ public class Main {
         String[] nameProducts = new String[]{"Pot", "Arrow", "Stockings"};
         double[] pricesProducts = new double[]{123, 344, 23};
 
+
         for (int i = 0; i < nameProducts.length; i++) {
-            cashbox.addProduct(new ProductPosition(new ProductType1(nameProducts[i], pricesProducts[i]), i + 2));
+            Product a = Product.createProduct(nameProducts[i], pricesProducts[i], "");
+            cashbox.addProduct(new ProductPosition(a, 1));
         }
 
         Customer client = new Customer(new ProductCart());
