@@ -1,21 +1,34 @@
+package shopelements;
+
 import static java.lang.System.exit;
 
-/**
- * Prototype for our products
- */
-public abstract class AbstractProduct {
+public class Product {
+    private static final String secretKey = "QWE123321";
     public static int nextId = 1;
-    protected static String secretKey;
+
     protected int id;
     protected String name;
-    protected double price;
+    private double price;
+
+    /**
+     * Constructor
+     *
+     * @param name  name of the product
+     * @param price price of the product
+     */
+    private Product(String name, double price) {
+        this.id = nextId;
+        nextId++;
+        this.name = name;
+        this.price = price;
+    }
 
     /**
      * Copy constructor
      *
-     * @param target The object of type AbstractProduct that will be copied to the new one
+     * @param target The object of type Product that will be copied to the new one
      */
-    public AbstractProduct(AbstractProduct target) {
+    protected Product(Product target) {
         if (target == null) {
             System.out.println("Null product occurred");
             exit(-1);
@@ -26,26 +39,6 @@ public abstract class AbstractProduct {
     }
 
     /**
-     * Constructor
-     *
-     * @param name  name of the product
-     * @param price price of the product
-     */
-    protected AbstractProduct(String name, double price) {
-        this.id = nextId;
-        nextId++;
-        this.name = name;
-        this.price = price;
-    }
-
-    /**
-     * Clones the object
-     *
-     * @return clone of the AbstractProduct
-     */
-    abstract public AbstractProduct makeClone();
-
-    /**
      * Function for creating the product via checking the key
      *
      * @param name  name of the product
@@ -53,14 +46,20 @@ public abstract class AbstractProduct {
      * @param key   key to get/not get access to the creation of the product
      * @return product in case of succeed, null otherwise
      */
-    abstract public AbstractProduct createProduct(int id, String name, double price, String key);
-
-    public String getProductName() {
-        return name;
+    public static Product createProduct(String name, double price, String key) {
+        if (!secretKey.equals(key)) {
+            System.out.println("You can not create product. Wrong key.");
+            return null;
+        }
+        return new Product(name, price);
     }
 
-    public double getProductPrice() {
-        return price;
+    public Product makeClone() {
+        return new Product(this);
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**
@@ -77,6 +76,10 @@ public abstract class AbstractProduct {
         }
     }
 
+    public double getPrice() {
+        return this.price;
+    }
+
     /**
      * Sets price to the product via checking the key
      *
@@ -89,5 +92,9 @@ public abstract class AbstractProduct {
         } else {
             System.out.println("Access denied");
         }
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

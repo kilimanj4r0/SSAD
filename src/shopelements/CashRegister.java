@@ -1,13 +1,14 @@
+package shopelements;
+
 import java.util.ArrayList;
 
 /**
  * Class representing Cashier point in our supermarket
  * Can change the parameters of products passed to it by using special Cashier key (Galya otmena)
  */
-public class Cashbox {
+public class CashRegister {
     private static final String secretKey = "QWE123321";
-    private final ArrayList<ProductPosition> productPositions = new ArrayList<ProductPosition>();
-    private int id;
+    private final ArrayList<ProductPosition> productPositions = new ArrayList<>();
 
     /**
      * @return ArrayList of all products in our supermarket
@@ -16,10 +17,10 @@ public class Cashbox {
         return productPositions;
     }
 
-    public void changeQuantity(int id, int minusQuantity) {
+    public void changeQuantity(int id, int delta) {
         for (ProductPosition productPosition : productPositions) {
             if (productPosition.product.id == id) {
-                productPosition.quantity -= minusQuantity;
+                productPosition.quantity += delta;
             }
         }
     }
@@ -53,10 +54,14 @@ public class Cashbox {
      * @param productPosition
      */
     public void addProduct(ProductPosition productPosition) {
-        if (checkAvailability(productPosition)) {
-            productPositions.get(productPositions.indexOf(productPosition)).quantity += 1;
-        }
-        productPositions.add(productPosition);
+        int index = indexInCashRegister(productPosition);
+        if (index != -1) productPositions.get(index).quantity += 1;
+        else productPositions.add(productPosition);
+    }
+
+    public void addProduct(String name, double price, int quantity) {
+        Product product = Product.createProduct(name, price, secretKey);
+        this.productPositions.add(new ProductPosition(product, quantity));
     }
 
     /**
@@ -71,29 +76,47 @@ public class Cashbox {
     }
 
     /**
-     * Checks if there are such products in the supermarket
+     * Checks if there are such forSearch in the supermarket
      *
-     * @param products positions to check for availability to sell
-     * @return true if we are able to sell such products, false otherwise
+     * @param forSearch position to check for availability to sell
+     * @return true if we are able to sell this forSearch, false otherwise
      */
-    public boolean checkAvailability(ArrayList<ProductPosition> products) {
-        for (ProductPosition product : products) {
-            for (ProductPosition productPosition : productPositions) {
-                if (productPosition.product.id == product.product.id) {
-                    return true;
-                }
+    public boolean checkAvailability(ProductPosition forSearch) {
+        for (ProductPosition pos : productPositions) {
+            if (pos.product.id == forSearch.product.id && pos.quantity >= forSearch.quantity) {
+                return true;
             }
         }
         return false;
     }
 
     /**
-     * Checks if there are such product in the supermarket
+     * Wrapper on previous {@link #checkAvailability(ProductPosition)} method for array
      *
-     * @param product position to check for availability to sell
-     * @return true if we are able to sell this product, false otherwise
+     * @param products positions to check for availability to sell
+     * @return true if we are able to sell such products, false otherwise
      */
-    public boolean checkAvailability(ProductPosition product) {
-        return productPositions.contains(product);
+    public boolean checkAvailability(ArrayList<ProductPosition> products) {
+        for (ProductPosition product : products) {
+            if (!checkAvailability(product)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if there are such forSearch in the supermarket
+     *
+     * @param forSearch position to check for availability to sell
+     * @return true if we are able to sell this forSearch, false otherwise
+     */
+    public int indexInCashRegister(ProductPosition forSearch) {
+        for (int i = 0; i < productPositions.size(); i++) {
+            if (productPositions.get(i).product == forSearch.product) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
