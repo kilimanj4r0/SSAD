@@ -7,4 +7,4 @@ The UML class diagram and description of the project in [Report](https://github.
 
 ## Assignment 2
 ### The `decorator` design pattern implemented 
-The UML class diagram and description of the project in [Report](https://github.com/kilimanj4r0/SSAD_A1_Team32/blob/a485dace19357dfad06e7147b4628cde7448463e/A2%20-%20Team%2032%20-%20Supermarket%20Billing%20Software%20-%20Report.pdf)
+The UML class diagram and description of the project in [Report](https://github.com/kilimanj4r0/SSAD_A1_Team32/blob/main/A2%20-%20Team%2032%20-%20Supermarket%20Billing%20Software%20-%20Report.pdf)
