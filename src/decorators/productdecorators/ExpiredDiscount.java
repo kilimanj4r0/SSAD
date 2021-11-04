@@ -2,7 +2,7 @@ package decorators.productdecorators;
 
 import shopelements.Product;
 
-public class ExpiredDiscount extends SaleDecorator {
+public class ExpiredDiscount extends DiscountDecorator {
     public ExpiredDiscount(Product target) {
         super(target);
     }

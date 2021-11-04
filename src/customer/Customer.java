@@ -10,7 +10,13 @@ public class Customer {
     public String name;
     public ShoppingCart shoppingCart;
 
-    public Customer(ShoppingCart cart) {
+    public Customer(String name) {
+        this.name = name;
+        this.shoppingCart = new ShoppingCart();
+    }
+
+    public Customer(String name, ShoppingCart cart) {
+        this.name = name;
         this.shoppingCart = cart;
     }
 }

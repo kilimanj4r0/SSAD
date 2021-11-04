@@ -2,30 +2,13 @@ package shopelements;
 
 import static java.lang.System.exit;
 
-/**
- * Prototype for our products
- */
 public class Product {
     private static final String secretKey = "QWE123321";
     public static int nextId = 1;
+
     protected int id;
     protected String name;
     private double price;
-
-    /**
-     * Copy constructor
-     *
-     * @param target The object of type AbstractProduct that will be copied to the new one
-     */
-    protected Product(Product target) {
-        if (target == null) {
-            System.out.println("Null product occurred");
-            exit(-1);
-        }
-        this.price = target.price;
-        this.id = target.id;
-        this.name = target.name;
-    }
 
     /**
      * Constructor
@@ -38,6 +21,21 @@ public class Product {
         nextId++;
         this.name = name;
         this.price = price;
+    }
+
+    /**
+     * Copy constructor
+     *
+     * @param target The object of type Product that will be copied to the new one
+     */
+    protected Product(Product target) {
+        if (target == null) {
+            System.out.println("Null product occurred");
+            exit(-1);
+        }
+        this.price = target.price;
+        this.id = target.id;
+        this.name = target.name;
     }
 
     /**
@@ -56,16 +54,11 @@ public class Product {
         return new Product(name, price);
     }
 
-    /**
-     * Clones the object
-     *
-     * @return clone of the AbstractProduct
-     */
     public Product makeClone() {
         return new Product(this);
     }
 
-    public String getProductName() {
+    public String getName() {
         return name;
     }
 
@@ -81,6 +74,10 @@ public class Product {
         } else {
             System.out.println("Access denied");
         }
+    }
+
+    public double getPrice() {
+        return this.price;
     }
 
     /**
@@ -100,9 +97,4 @@ public class Product {
     public int getId() {
         return this.id;
     }
-
-    public double getPrice() {
-        return this.price;
-    }
-
 }

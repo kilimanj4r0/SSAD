@@ -2,7 +2,7 @@ package decorators.productdecorators;
 
 import shopelements.Product;
 
-public class EveningDiscount extends SaleDecorator {
+public class EveningDiscount extends DiscountDecorator {
     public EveningDiscount(Product target) {
         super(target);
     }

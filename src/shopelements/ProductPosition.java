@@ -19,18 +19,10 @@ public class ProductPosition {
         return product.getPrice() * quantity;
     }
 
-    /**
-     * @return Quantity of products of certain type
-     */
     public int getQuantity() {
         return quantity;
     }
 
-    /**
-     * Changes the quantity of the products of certain type
-     *
-     * @param quantity The new number of products
-     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

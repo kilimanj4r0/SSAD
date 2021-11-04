@@ -1,7 +1,6 @@
 import customer.Customer;
 import decorators.productdecorators.EveningDiscount;
 import shopelements.CashRegister;
-import shopelements.ShoppingCart;
 import shopelements.ProductPosition;
 
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ public class Main {
         for (ProductPosition productPosition : array) {
             System.out.println("Id, Name, Price, Quantity: "
                     + productPosition.product.getId() + ", "
-                    + productPosition.product.getProductName() + ", "
+                    + productPosition.product.getName() + ", "
                     + productPosition.product.getPrice() + ", "
                     + productPosition.quantity);
         }
@@ -27,18 +26,17 @@ public class Main {
             cashRegister.addProduct(nameProducts[i], pricesProducts[i], 1);
         }
 
-        cashRegister.addProduct("bulka", 50, 1);
+        cashRegister.addProduct("Bread", 50, 1);
 
         cashRegister.getProductList().get(cashRegister.getProductList().size() - 1).product = new EveningDiscount(cashRegister.getProductList().get(cashRegister.getProductList().size() - 1).product);
 
-        Customer client = new Customer(new ShoppingCart());
-        client.name = "Sirojiddin Komolov";
+        Customer client = new Customer("Sirojiddin Komolov");
 
         printProductList(cashRegister.getProductList());
 
-        client.shoppingCart.addProduct(cashRegister.getProduct(1, 1));
-        client.shoppingCart.addProduct(cashRegister.getProduct(1, 14));
-        client.shoppingCart.addProduct(cashRegister.getProduct(4, 1));
+        client.shoppingCart.add(cashRegister.getProduct(1, 1));
+        client.shoppingCart.add(cashRegister.getProduct(1, 14));
+        client.shoppingCart.add(cashRegister.getProduct(4, 1));
 
         client.shoppingCart.createOrder(cashRegister);
     }
