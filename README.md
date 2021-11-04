@@ -2,7 +2,7 @@
 SSAD, F21, Innopolis University
 
 ## How to run the project
-1. [Download latest realease](/releases/latest/download/ssad.jar)
+1. [Download latest realease](https://github.com/kilimanj4r0/SSAD/releases/latest/download/ssad.jar)
 2. Open the shell
 3. Enter the command
     ```shell
