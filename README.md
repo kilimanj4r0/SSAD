@@ -16,3 +16,7 @@ The UML class diagram and description of the project in [Report](/A1%20-%20Team%
 ## Assignment 2
 ### The `decorator` design pattern implemented 
 The UML class diagram and description of the project in [Report](/A2%20-%20Team%2032%20-%20Supermarket%20Billing%20Software%20-%20Report.pdf)
+
+## Assignment 3
+### The `iterator` design pattern implemented 
+The UML class diagram and description of the project in [Report](/A3%20-%20Team%2032%20-%20Supermarket%20Billing%20Software%20-%20Report.pdf)
