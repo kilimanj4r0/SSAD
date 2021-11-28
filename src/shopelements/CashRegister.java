@@ -19,7 +19,7 @@ public class CashRegister {
 
     public void changeQuantity(int id, int delta) {
         for (ProductPosition productPosition : productPositions) {
-            if (productPosition.product.id == id) {
+            if (productPosition.product.getId() == id) {
                 productPosition.quantity += delta;
             }
         }
@@ -27,7 +27,7 @@ public class CashRegister {
 
     public ProductPosition getProduct(int id, int number) {
         for (ProductPosition productPosition : productPositions) {
-            if (productPosition.product.id == id) {
+            if (productPosition.product.getId() == id) {
                 if (productPosition.quantity < number) {
                     System.out.println("Too many objects.");
                     return null;
@@ -60,7 +60,7 @@ public class CashRegister {
     }
 
     public void addProduct(String name, double price, int quantity) {
-        Product product = Product.createProduct(name, price, secretKey);
+        DefaultProduct product = DefaultProduct.createProduct(name, price, secretKey);
         this.productPositions.add(new ProductPosition(product, quantity));
     }
 
@@ -83,7 +83,7 @@ public class CashRegister {
      */
     public boolean checkAvailability(ProductPosition forSearch) {
         for (ProductPosition pos : productPositions) {
-            if (pos.product.id == forSearch.product.id && pos.quantity >= forSearch.quantity) {
+            if (pos.product.getId() == forSearch.product.getId() && pos.quantity >= forSearch.quantity) {
                 return true;
             }
         }

@@ -2,33 +2,32 @@ package decorators.productdecorators;
 
 import shopelements.Product;
 
-public abstract class DiscountDecorator extends Product {
-    protected Product wrapee;
+public abstract class DiscountDecorator implements Product {
+    protected Product wrappee;
 
     public DiscountDecorator(Product target) {
-        super(target);
-        wrapee = target;
+        wrappee = target;
     }
 
     abstract public Product makeClone();
 
     public String getName() {
-        return wrapee.getName();
+        return wrappee.getName();
     }
 
     public void setName(String key, String name) {
-        wrapee.setName(key, name);
+        wrappee.setName(key, name);
     }
 
     public double getPrice() {
-        return wrapee.getPrice();
+        return wrappee.getPrice();
     }
 
     public void setPrice(String key, double price) {
-        wrapee.setPrice(key, price);
+        wrappee.setPrice(key, price);
     }
 
     public int getId() {
-        return wrapee.getId();
+        return wrappee.getId();
     }
 }

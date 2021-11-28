@@ -16,7 +16,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         CashRegister cashRegister = new CashRegister();
         String[] nameProducts = new String[]{"Pot", "Arrow", "Stockings"};
         double[] pricesProducts = new double[]{123, 344, 23};
@@ -38,6 +38,10 @@ public class Main {
         client.shoppingCart.add(cashRegister.getProduct(1, 14));
         client.shoppingCart.add(cashRegister.getProduct(4, 1));
 
-        client.shoppingCart.createOrder(cashRegister);
+        cashRegister.removeProduct(0);  // Make product unavailable
+
+        System.out.println();
+
+        client.shoppingCart.createOrder(cashRegister);  // The bill calculated without unavailable product with warning
     }
 }
