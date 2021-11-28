@@ -9,7 +9,7 @@ public class ExpiredDiscount extends DiscountDecorator {
 
     @Override
     public Product makeClone() {
-        return new ExpiredDiscount(wrapee);
+        return new ExpiredDiscount(wrappee);
     }
 
     @Override

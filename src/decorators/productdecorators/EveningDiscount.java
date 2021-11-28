@@ -9,7 +9,7 @@ public class EveningDiscount extends DiscountDecorator {
 
     @Override
     public Product makeClone() {
-        return new EveningDiscount(wrapee);
+        return new EveningDiscount(wrappee);
     }
 
     @Override
