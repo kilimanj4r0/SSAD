@@ -2,11 +2,10 @@ package decorators.productdecorators;
 
 import shopelements.Product;
 
-public abstract class DiscountDecorator extends Product {
+public abstract class DiscountDecorator implements Product {
     protected Product wrapee;
 
     public DiscountDecorator(Product target) {
-        super(target);
         wrapee = target;
     }
 

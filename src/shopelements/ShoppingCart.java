@@ -45,15 +45,15 @@ public class ShoppingCart extends ArrayList<ProductPosition> {
         if (cashRegister.checkAvailability(this)) {
             System.out.println("Your order:");
             for (ProductPosition productPosition : this) {
-                if (cashRegister.getProduct(productPosition.product.id, productPosition.quantity) == null) {
-                    productPosition.quantity = cashRegister.getProduct(productPosition.product.id, 0).quantity;
+                if (cashRegister.getProduct(productPosition.product.getId(), productPosition.quantity) == null) {
+                    productPosition.quantity = cashRegister.getProduct(productPosition.product.getId(), 0).quantity;
                 }
                 System.out.println("Id, Name, Price, Number of product: "
-                        + productPosition.product.id + ", "
-                        + productPosition.product.name + ", "
+                        + productPosition.product.getId() + ", "
+                        + productPosition.product.getName() + ", "
                         + productPosition.product.getPrice() + ", "
                         + productPosition.quantity);
-                cashRegister.changeQuantity(productPosition.product.id, -productPosition.quantity);
+                cashRegister.changeQuantity(productPosition.product.getId(), -productPosition.quantity);
             }
             System.out.println("Total bill: " + cashRegister.calculateOverallSum(this));
             this.clear();
