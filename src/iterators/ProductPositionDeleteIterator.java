@@ -3,6 +3,9 @@ package iterators;
 import shopelements.ProductPosition;
 import shopelements.ShoppingCart;
 
+/**
+ * Implementation of DeleteIterator interface for ProductPosition.
+ */
 public class ProductPositionDeleteIterator implements DeleteIterator<ProductPosition> {
     final private ShoppingCart cart;
     private int currentProductPositionIndex = -1;

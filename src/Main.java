@@ -38,8 +38,10 @@ public class Main {
         client.shoppingCart.add(cashRegister.getProduct(1, 14));
         client.shoppingCart.add(cashRegister.getProduct(4, 1));
 
-        cashRegister.removeProduct(0);
+        cashRegister.removeProduct(0);  // Make product unavailable
 
-        client.shoppingCart.createOrder(cashRegister);
+        System.out.println();
+
+        client.shoppingCart.createOrder(cashRegister);  // The bill calculated without unavailable product with warning
     }
 }
