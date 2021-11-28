@@ -1,5 +1,7 @@
 package shopelements;
 
+import iterators.ProductPositionDeleteIterator;
+
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
@@ -41,25 +43,31 @@ public class ShoppingCart extends ArrayList<ProductPosition> {
     /**
      * Passing the cart to the cashRegister (terminal), where it will be manipulated further
      */
-    public void createOrder(CashRegister cashRegister) {
-        if (cashRegister.checkAvailability(this)) {
-            System.out.println("Your order:");
-            for (ProductPosition productPosition : this) {
-                if (cashRegister.getProduct(productPosition.product.getId(), productPosition.quantity) == null) {
-                    productPosition.quantity = cashRegister.getProduct(productPosition.product.getId(), 0).quantity;
+    public void createOrder(CashRegister cashRegister) throws Exception {
+        System.out.println("Your order:");
+        ProductPositionDeleteIterator iterator = new ProductPositionDeleteIterator(this);
+        ProductPosition productPosition = iterator.getNext();
+        while (true) {
+            if (cashRegister.getProduct(productPosition.product.getId(), productPosition.quantity) == null) {
+                if (!iterator.hasNext()) {
+                    this.remove(productPosition);
+                    break;
                 }
-                System.out.println("Id, Name, Price, Number of product: "
-                        + productPosition.product.getId() + ", "
-                        + productPosition.product.getName() + ", "
-                        + productPosition.product.getPrice() + ", "
-                        + productPosition.quantity);
-                cashRegister.changeQuantity(productPosition.product.getId(), -productPosition.quantity);
+                productPosition = iterator.getNextAndDelete();
+                continue;
             }
-            System.out.println("Total bill: " + cashRegister.calculateOverallSum(this));
-            this.clear();
-        } else {
-            System.out.println("Some of these products are already unavailable.");
+            System.out.println("Id, Name, Price, Number of product: "
+                    + productPosition.product.getId() + ", "
+                    + productPosition.product.getName() + ", "
+                    + productPosition.product.getPrice() + ", "
+                    + productPosition.quantity);
+            cashRegister.changeQuantity(productPosition.product.getId(), -productPosition.quantity);
+
+            if (!iterator.hasNext()) break;
+            productPosition = iterator.getNext();
         }
+        System.out.println("Total bill: " + cashRegister.calculateOverallSum(this));
+        this.clear();
     }
 
     /**
